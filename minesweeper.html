@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<html>
+    <head>
+        <!-- Заголовок страницы -->
+        <title>Сапер javascript</title>
+        <!-- Подключение файла стилей -->
+        <link rel="stylesheet" type="text/css" href="./minesweeper.css">
+        <!-- Подключение файла скрипта -->
+        <script type="text/javascript" src="./minesweeper.js"></script>
+        <!-- Встроенный скрипт для настройки игры -->
+        <script type="text/javascript">
+            // Функция setup вызывается при загрузке страницы
+            function setup(){
+                // Получаем элемент div с id="game"
+                var div = document.getElementById("game");
+                // Создаем новый экземпляр игры Сапер с параметрами (ширина, высота, количество мин)
+                var ms = new MineSweeper(35, 20, 65);
+                // Конструируем игру внутри элемента div
+                ms.construct(div);
+            }
+        </script>
+    </head>
+    <body onload="setup()">
+        <!-- Контейнер для игры -->
+        <div id="game"></div>
+		<!-- Регистрация Service Worker -->
+        <script>
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+              navigator.serviceWorker.register('serviceworker.js').then((registration) => {
+                console.log('Service Worker зарегистрирован:', registration);
+              }).catch((registrationError) => {
+                console.log('Ошибка регистрации Service Worker:', registrationError);
+              });
+            });
+          }
+        </script>
+    </body>
+</html>
